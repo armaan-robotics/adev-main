@@ -5,8 +5,9 @@
 
 (function applySavedAppearance() {
   var savedTheme = localStorage.getItem("adev_theme");
+  var savedThemeWasChosen = localStorage.getItem("adev_theme_chosen") === "true";
   var savedFont = localStorage.getItem("adev_font");
-  var theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
+  var theme = savedThemeWasChosen && (savedTheme === "dark" || savedTheme === "light") ? savedTheme : "dark";
   var font = savedFont === "small" || savedFont === "medium" || savedFont === "large" ? savedFont : "medium";
 
   document.documentElement.setAttribute("data-theme", theme);
@@ -26,6 +27,7 @@ window.ADevTheme = {
         var theme = themeToggle.checked ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("adev_theme", theme);
+        localStorage.setItem("adev_theme_chosen", "true");
       });
     }
 

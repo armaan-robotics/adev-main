@@ -33,6 +33,10 @@
   display: grid;
 }
 
+[data-asset-card][hidden] {
+  display: none;
+}
+
 .filter-group {
   border: 0;
   display: grid;

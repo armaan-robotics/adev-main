@@ -7,7 +7,8 @@ window.ADevFilter = {
   init: function () {
     var button = document.querySelector("[data-filter-button]");
     var dropdown = document.querySelector("[data-filter-dropdown]");
-    var cards = Array.prototype.slice.call(document.querySelectorAll("[data-asset-card]"));
+    var grid = document.querySelector("[data-assets-grid]");
+    var cards = getAssetCards();
 
     if (!button || !dropdown || !cards.length) {
       return;
@@ -27,11 +28,21 @@ window.ADevFilter = {
       }
     });
 
+    dropdown.addEventListener("click", function (event) {
+      if (event.target.matches("input[type='checkbox']")) {
+        applyFilters(dropdown, grid);
+      }
+    });
+
     dropdown.addEventListener("change", function () {
-      applyFilters(dropdown, cards);
+      applyFilters(dropdown, grid);
     });
   }
 };
+
+function getAssetCards() {
+  return Array.prototype.slice.call(document.querySelectorAll("[data-asset-card]"));
+}
 
 function buildFilterOptions(dropdown, cards) {
   var groups = {
@@ -63,16 +74,19 @@ function renderGroup(label, kind, values) {
   return [
     '<fieldset class="filter-group">',
     '<legend>' + escapeHtml(label) + '</legend>',
-    options.map(function (value) {
-      var displayValue = kind === "signup" ? (value === "true" ? "Signup required" : "No signup") : value;
-      return '<label class="filter-option"><input type="checkbox" data-filter-kind="' + kind + '" value="' + escapeAttribute(value) + '" aria-label="Filter by ' + escapeAttribute(displayValue) + '"> ' + escapeHtml(displayValue) + '</label>';
+    options.map(function (value, index) {
+      var displayValue = kind === "signup" ? (value === "true" ? "Signup Required" : "No Signup Required") : value;
+      var inputId = "filter-" + kind + "-" + index;
+      return '<label class="filter-option" for="' + escapeAttribute(inputId) + '"><input id="' + escapeAttribute(inputId) + '" type="checkbox" data-filter-kind="' + kind + '" value="' + escapeAttribute(value) + '" aria-label="Filter by ' + escapeAttribute(displayValue) + '"> <span>' + escapeHtml(displayValue) + '</span></label>';
     }).join(""),
     '</fieldset>'
   ].join("");
 }
 
-function applyFilters(dropdown, cards) {
+function applyFilters(dropdown, grid) {
   var selected = collectFilters(dropdown);
+  var cards = getAssetCards();
+  var visibleCount = 0;
 
   cards.forEach(function (card) {
     var matches = matchesFilterGroup(selected.type, [card.getAttribute("data-type")])
@@ -80,7 +94,13 @@ function applyFilters(dropdown, cards) {
       && matchesFilterGroup(selected.signup, [card.getAttribute("data-signup")]);
 
     card.hidden = !matches;
+
+    if (matches) {
+      visibleCount += 1;
+    }
   });
+
+  renderFilterEmptyState(grid, visibleCount);
 }
 
 function collectFilters(dropdown) {
@@ -105,4 +125,28 @@ function matchesFilterGroup(selectedValues, cardValues) {
   return selectedValues.some(function (value) {
     return cardValues.indexOf(value) !== -1;
   });
+}
+
+function renderFilterEmptyState(grid, visibleCount) {
+  if (!grid) {
+    return;
+  }
+
+  var emptyState = grid.querySelector("[data-filter-empty]");
+
+  if (visibleCount > 0) {
+    if (emptyState) {
+      emptyState.remove();
+    }
+
+    return;
+  }
+
+  if (!emptyState) {
+    emptyState = document.createElement("p");
+    emptyState.className = "empty-state";
+    emptyState.setAttribute("data-filter-empty", "");
+    emptyState.textContent = "No projects match these filters.";
+    grid.appendChild(emptyState);
+  }
 }

@@ -8,10 +8,4 @@
   line, and fill in each field.
 */
 
-window.UPCOMING = [
-  {
-    name: "GitProf",
-    type: "Tool",
-    teaserDescription: "Enchance your GitHub profile with dynamic stats, personalized sections, and a sleek design. Showcase your projects, contributions, and impact with a profile that stands out."
-  }
-];
+window.UPCOMING = [];

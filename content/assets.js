@@ -23,5 +23,14 @@ window.ASSETS = [
     link: "https://budgetly-xldm.vercel.app/",
     signupRequired: true,
     thumbnail: "#A8D8C8"
+  },
+  {
+    name: "GitProf",
+    type: "Tool",
+    price: "Free",
+    description: "Enhance your GitHub profile with dynamic stats, personalized sections, and a sleek design.",
+    link: "https://gitprof.adev.codes",
+    signupRequired: false,
+    thumbnail: "#C7D2FE"
   }
 ];

@@ -30,7 +30,9 @@ window.ADevAssets = {
         ? '<div class="thumbnail thumbnail-fallback" style="background-color: ' + escapeAttribute(asset.thumbnail) + ';">' + escapeHtml(asset.name.charAt(0)) + '</div>'
         : '<img class="thumbnail" src="' + escapeAttribute(asset.thumbnail || "") + '" alt="' + escapeAttribute(asset.name) + ' thumbnail">';
       var priceClass = asset.price === "Paid" ? "badge-paid" : "badge-free";
-      var signupBadge = asset.signupRequired ? '<span class="badge badge-neutral">Signup Required</span>' : "";
+      var signupBadge = asset.signupRequired
+        ? '<span class="badge badge-neutral">Signup Required</span>'
+        : '<span class="badge badge-neutral">No Signup Required</span>';
 
       return [
         '<article class="asset-card" data-asset-card data-type="' + escapeAttribute(asset.type || "") + '" data-price="' + escapeAttribute(asset.price || "") + '" data-signup="' + String(Boolean(asset.signupRequired)) + '">',

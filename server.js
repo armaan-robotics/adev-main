@@ -1,80 +1,70 @@
-// server.js
-// Purpose: Tiny Express server that serves the website and saves submitted ideas to ideas.json
-
-const express = require("express");
+const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
+const ROOT = __dirname;
 
-// Path to the ideas file — sits in the project root
-const IDEAS_FILE = path.join(__dirname, "ideas.json");
+const mimeTypes = {
+  ".css": "text/css; charset=utf-8",
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".json": "application/json; charset=utf-8",
+  ".png": "image/png",
+  ".svg": "image/svg+xml; charset=utf-8",
+  ".webp": "image/webp"
+};
 
-// Parse incoming JSON request bodies
-app.use(express.json());
+function send(res, statusCode, body, contentType) {
+  res.writeHead(statusCode, { "Content-Type": contentType || "text/plain; charset=utf-8" });
+  res.end(body);
+}
 
-// Serve all static files (HTML, CSS, JS) from the project folder
-app.use(express.static(__dirname));
+function getFilePath(urlPath) {
+  var cleanPath = decodeURIComponent(urlPath.split("?")[0]).replace(/^\/+/, "");
+  var requestedPath = path.resolve(ROOT, cleanPath || "index.html");
 
-// ─── POST /submit-idea ───────────────────────────────────────────────────────
-// Receives { text: "user's idea" } and appends it to ideas.json with a timestamp
-app.post("/submit-idea", (req, res) => {
-  const ideaText = req.body.text;
-
-  // Basic validation
-  if (!ideaText || ideaText.trim() === "") {
-    return res.status(400).json({ error: "Idea cannot be empty." });
+  if (!requestedPath.startsWith(ROOT)) {
+    return null;
   }
 
-  if (ideaText.trim().length > 300) {
-    return res.status(400).json({ error: "Idea exceeds 300 character limit." });
+  return requestedPath;
+}
+
+http.createServer(function (req, res) {
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    send(res, 405, "Method not allowed");
+    return;
   }
 
-  // Build the new idea object
-  const newIdea = {
-    text: ideaText.trim(),
-    timestamp: new Date().toISOString()
-  };
+  var filePath = getFilePath(req.url);
 
-  // Read existing ideas from file, or start with empty array if file doesn't exist
-  let ideas = [];
-  if (fs.existsSync(IDEAS_FILE)) {
-    try {
-      const raw = fs.readFileSync(IDEAS_FILE, "utf-8");
-      ideas = JSON.parse(raw);
-    } catch (e) {
-      // If file is corrupted, start fresh
-      ideas = [];
+  if (!filePath) {
+    send(res, 403, "Forbidden");
+    return;
+  }
+
+  fs.stat(filePath, function (statError, stats) {
+    if (statError || !stats.isFile()) {
+      send(res, 404, "Not found");
+      return;
     }
-  }
 
-  // Prepend new idea so newest is always first
-  ideas.unshift(newIdea);
+    var contentType = mimeTypes[path.extname(filePath).toLowerCase()] || "application/octet-stream";
 
-  // Write back to file
-  fs.writeFileSync(IDEAS_FILE, JSON.stringify(ideas, null, 2), "utf-8");
+    if (req.method === "HEAD") {
+      send(res, 200, "", contentType);
+      return;
+    }
 
-  res.json({ success: true });
-});
-
-// ─── GET /get-ideas ──────────────────────────────────────────────────────────
-// Returns all ideas from ideas.json as a JSON array
-app.get("/get-ideas", (req, res) => {
-  if (!fs.existsSync(IDEAS_FILE)) {
-    return res.json([]);
-  }
-
-  try {
-    const raw = fs.readFileSync(IDEAS_FILE, "utf-8");
-    const ideas = JSON.parse(raw);
-    res.json(ideas);
-  } catch (e) {
-    res.json([]);
-  }
-});
-
-// ─── START SERVER ────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`ADev running at http://localhost:${PORT}`);
+    fs.createReadStream(filePath)
+      .on("error", function () {
+        send(res, 500, "Server error");
+      })
+      .pipe(res);
+  });
+}).listen(PORT, function () {
+  console.log("ADev running at http://localhost:" + PORT);
 });

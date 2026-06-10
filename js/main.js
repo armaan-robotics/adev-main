@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     window.ADevFilter.init();
   }
 
+  if (window.ADevScrollAnimations) {
+    window.ADevScrollAnimations.init();
+  }
+
 });
 
 window.addEventListener("pageshow", function () {

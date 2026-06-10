@@ -4,11 +4,11 @@
   --color-accent: #A8D8C8;
   --color-accent-strong: #3F8F75;
   --color-background: #F7F5F0;
-  --color-surface: #FFFFFF;
-  --color-surface-alt: #EEF6F2;
+  --color-surface: rgba(255, 255, 255, 0.76);
+  --color-surface-alt: rgba(238, 246, 242, 0.72);
   --color-text: #1E1E2E;
   --color-text-muted: #5F6678;
-  --color-border: #D9DDE7;
+  --color-border: rgba(217, 221, 231, 0.82);
   --color-shadow: rgba(44, 62, 107, 0.16);
   --color-backdrop: rgba(18, 22, 35, 0.56);
   --color-free-bg: #DFF4E7;
@@ -17,15 +17,15 @@
   --color-paid-text: #7A5712;
   --color-neutral-bg: #ECEEF3;
   --color-neutral-text: #4B5263;
-  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-base: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-size-small: 14px;
   --font-size-medium: 16px;
   --font-size-large: 18px;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
-  --font-size-lg: 1.2rem;
-  --font-size-xl: 2.2rem;
-  --font-size-hero: 4rem;
+  --font-size-lg: 1.12rem;
+  --font-size-xl: 1.95rem;
+  --font-size-hero: 3.45rem;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -33,9 +33,9 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 8px;
+  --radius-sm: 14px;
+  --radius-md: 999px;
+  --radius-lg: 22px;
   --transition-fast: 160ms ease;
   --transition-medium: 300ms ease;
   --max-width: 900px;
@@ -43,15 +43,15 @@
 
 [data-theme="dark"] {
   --color-primary: #77c3a9;
-  --color-primary-soft: #2F312F;
+  --color-primary-soft: rgba(47, 49, 47, 0.72);
   --color-accent: #A8D8C8;
   --color-accent-strong: #8FCBB8;
   --color-background: #181A18;
-  --color-surface: #222421;
-  --color-surface-alt: #292D29;
+  --color-surface: rgba(34, 36, 33, 0.78);
+  --color-surface-alt: rgba(41, 45, 41, 0.72);
   --color-text: #ECE8DF;
   --color-text-muted: #B8B4AA;
-  --color-border: #3A3D38;
+  --color-border: rgba(58, 61, 56, 0.9);
   --color-shadow: rgba(0, 0, 0, 0.28);
   --color-backdrop: rgba(0, 0, 0, 0.62);
   --color-free-bg: #243B30;

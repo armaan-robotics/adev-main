@@ -6,7 +6,7 @@
 (function applySavedAppearance() {
   var savedTheme = localStorage.getItem("adev_theme");
   var savedFont = localStorage.getItem("adev_font");
-  var theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light";
+  var theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
   var font = savedFont === "small" || savedFont === "medium" || savedFont === "large" ? savedFont : "medium";
 
   document.documentElement.setAttribute("data-theme", theme);
@@ -17,7 +17,7 @@ window.ADevTheme = {
   init: function () {
     var themeToggle = document.querySelector("[data-theme-toggle]");
     var fontButtons = document.querySelectorAll("[data-font-option]");
-    var currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
     var currentFont = document.documentElement.getAttribute("data-font") || "medium";
 
     if (themeToggle) {

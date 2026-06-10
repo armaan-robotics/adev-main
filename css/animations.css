@@ -1,7 +1,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(14px);
   }
 
   to {
@@ -13,29 +13,38 @@
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 body {
   animation: pageEnter 260ms ease both;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 180ms ease;
 }
 
 .is-page-leaving body {
   opacity: 0;
-  transform: translateY(4px);
 }
 
 .asset-card,
 .upcoming-card,
 .idea-item {
   animation: fadeInUp var(--transition-medium) both;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,5 +54,10 @@ body {
     animation-duration: 1ms !important;
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

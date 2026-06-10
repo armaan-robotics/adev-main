@@ -18,7 +18,7 @@ window.ABOUT = {
   bio: "I'm Armaan — a Mechatronics student, robotics enthusiast, and independent product builder based in India. I build web apps that I'd actually want to use myself, and I care about how things work just as much as how they look. Budgetly is my first live product, and there's more coming.",
 
   // email: Your contact email address. Leave blank if you do not want an email link shown.
-  email: "armaan.robotics@gmail.com",
+  email: "",
 
   // github: Full GitHub profile URL, including https://. Leave blank to hide it.
   github: "https://github.com/armaan-robotics",

@@ -2,7 +2,14 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-family-base);
+  font-weight: 350;
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
 }
 
 a {
@@ -11,6 +18,7 @@ a {
 
 .top-bar {
   align-items: center;
+  backdrop-filter: blur(22px) saturate(150%);
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   display: flex;
@@ -21,6 +29,7 @@ a {
   padding: var(--space-3) max(var(--space-4), calc((100vw - var(--max-width)) / 2));
   position: sticky;
   top: 0;
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
   z-index: 20;
 }
 
@@ -29,14 +38,14 @@ a {
   color: var(--color-text);
   display: inline-flex;
   font-size: clamp(1.45rem, 2.8vw, 2rem);
-  font-weight: 750;
+  font-weight: 500;
   gap: var(--space-3);
   letter-spacing: 0;
   text-decoration: none;
 }
 
 .brand-logo {
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   display: block;
   height: 60px;
   object-fit: contain;
@@ -55,7 +64,7 @@ a {
 .header-tabs a {
   border-radius: var(--radius-md);
   color: var(--color-text);
-  font-weight: 700;
+  font-weight: 450;
   padding: var(--space-2) var(--space-3);
   text-decoration: none;
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -81,7 +90,7 @@ a {
 .hero h1 {
   color: var(--color-primary);
   font-size: var(--font-size-hero);
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.05;
 }
 
@@ -119,10 +128,12 @@ a {
 }
 
 .section-block {
+  backdrop-filter: blur(18px) saturate(140%);
   background: var(--color-surface-alt);
   border-radius: var(--radius-lg);
   margin: var(--space-7) calc(var(--space-4) * -1) 0;
   padding: var(--space-6) var(--space-4);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
 .section-header {

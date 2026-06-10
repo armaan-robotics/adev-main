@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-font="medium">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings | ADev</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css?v=2">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <header class="top-bar">
+      <a class="brand" href="index.html" aria-label="Go to ADev home">
+        <img class="brand-logo" src="assets/icons/logo.png.png" alt="" aria-hidden="true">
+        <span>ADev</span>
+      </a>
+      <nav class="header-tabs" aria-label="Primary navigation">
+        <a href="index.html" aria-label="Go to Home">Home</a>
+        <a href="pages/about.html" aria-label="Go to About">About</a>
+        <a href="settings.html" aria-label="Go to Settings">Settings</a>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <section class="section" id="settings">
+        <h1>Settings</h1>
+        <section class="settings-panel" id="appearance">
+          <h2>Appearance</h2>
+          <div class="setting-row">
+            <div>
+              <h3>Theme</h3>
+              <p>Switch between light and dark for this tab.</p>
+            </div>
+            <label class="switch" aria-label="Toggle dark mode">
+              <input type="checkbox" data-theme-toggle aria-label="Toggle dark mode">
+              <span class="switch-thumb" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <!--<section class="settings-panel future-settings" id="display">
+          <h2>Display</h2>
+            Add future display settings here
+        </section> -->
+      </section>
+    </main>
+    <footer class="footer">
+      <span><span data-footer-name>ADev</span> <span data-footer-year></span></span>
+    </footer>
+
+    <script src="content/assets.js"></script>
+    <script src="content/upcoming.js"></script>
+    <script src="content/about.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/render-assets.js"></script>
+    <script src="js/render-upcoming.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

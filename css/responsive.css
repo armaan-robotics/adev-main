@@ -1,0 +1,83 @@
+@media (max-width: 768px) {
+  .asset-grid,
+  .upcoming-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-dropdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    left: 0;
+    right: auto;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .section-header,
+  .setting-row,
+  .about-intro {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    max-width: 240px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    justify-content: center;
+    min-height: 74px;
+  }
+
+  .brand-logo {
+    height: 52px;
+    width: 52px;
+  }
+
+  .brand {
+    font-size: 1.3rem;
+  }
+
+  .header-tabs {
+    gap: var(--space-1);
+    justify-content: center;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .header-tabs a {
+    font-size: var(--font-size-sm);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .asset-grid,
+  .upcoming-grid,
+  .filter-dropdown {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: var(--space-6) 0;
+  }
+
+  .hero h1 {
+    font-size: 2.45rem;
+  }
+
+  .page-container {
+    padding-top: var(--space-5);
+  }
+
+  .form-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

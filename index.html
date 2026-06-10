@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-font="medium">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADev</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css?v=2">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <header class="top-bar">
+      <a class="brand" href="index.html" aria-label="Go to ADev home">
+        <img class="brand-logo" src="assets/icons/logo.png.png" alt="" aria-hidden="true">
+        <span>ADev</span>
+      </a>
+      <nav class="header-tabs" aria-label="Primary navigation">
+        <a href="index.html" aria-label="Go to Home">Home</a>
+        <a href="pages/about.html" aria-label="Go to About">About</a>
+        <a href="settings.html" aria-label="Go to Settings">Settings</a>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <section class="hero" id="hero">
+        <h1 data-about-name>ADev</h1>
+        <p data-about-tagline>A hub of digital products and services created by Armaan Gupta</p>
+      </section>
+
+      <section class="section" id="assets">
+        <div class="section-header">
+          <h2>Services & Products</h2>
+          <div class="filter-area">
+            <button class="filter-button" type="button" data-filter-button aria-label="Open project filters" aria-expanded="false">Filter</button>
+            <div class="filter-dropdown" data-filter-dropdown></div>
+          </div>
+        </div>
+        <div class="asset-grid" data-assets-grid></div>
+      </section>
+
+      <section class="section-block" id="upcoming">
+        <h2>Coming Soon</h2>
+        <div class="upcoming-grid" data-upcoming-grid></div>
+      </section>
+
+      <section class="section-block feedback-section" id="feedback">
+        <h2>Ideas & Feedback</h2>
+        <p>Have an idea for a product, service, or improvement? Share it through the feedback link. No personal details are required.</p>
+        <a class="button" href="https://forms.gle/1agMBrZdn3Fhdo4M6" target="_blank" rel="noopener noreferrer" aria-label="Open ideas and feedback form">Share Feedback</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span><span data-footer-name>ADev</span> <span data-footer-year></span></span>
+    </footer>
+
+    <script src="content/assets.js"></script>
+    <script src="content/upcoming.js"></script>
+    <script src="content/about.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/render-assets.js"></script>
+    <script src="js/render-upcoming.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
